@@ -1,15 +1,18 @@
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 int main(){
-  char *s,h;
+  char c[100];
   printf("Please type command:");
-  fgets(s,100,stdin);
-  char *command[20];
-  int n;
-  for( n = 0; s; n++){
-    command[n] = strsep(&s," ");
+  fgets(c,100,stdin);
+  char *holder = c;
+  char *command[100];
+  int n = 0;
+  while(holder){
+    command[n] = strsep(&holder," ");
+    n++;
   }
   command[n] = 0;
   execvp(command[0], command);
